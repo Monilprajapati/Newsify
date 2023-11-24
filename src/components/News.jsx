@@ -18,7 +18,7 @@ const News = () => {
 
   // work with useeffect to controll api
   useEffect(() => {
-    const apiKey = "1e9df10134414ec3b0c401fab3af8f0a";
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     // it is for our main data
     const getTopHeadlines = async () => {
