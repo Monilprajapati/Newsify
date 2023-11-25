@@ -1,7 +1,13 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        lato: ["Lato", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        plusSans: ["Plus Jakarta Sans", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

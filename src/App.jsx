@@ -1,10 +1,17 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import Categories from './components/Categories'
+// import NewsCard from './components/NewsCard'
+import News from './components/News'
+import { NewsContextProvider } from './contexts/NewsContext'
 
 const App = () => {
   return (
-    <div>
-      <h1 className='text-6xl text-center'>Project Newsify : Version 1.0.0</h1>
-    </div>
+    <NewsContextProvider>
+      <Navbar/>
+      <Categories />
+      <News/>
+    </NewsContextProvider>
   )
 }
 
