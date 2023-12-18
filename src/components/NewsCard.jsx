@@ -1,11 +1,13 @@
 import React from 'react'
 import { FiArrowRight } from 'react-icons/fi'
+import { timeElapsedSince } from '../utils/timeConversion';
 
 const NewsCard = ({item}) => {
     const itemTitle = item.title;
     const title = itemTitle?.length > 40 ? itemTitle.slice(0, 40) + ".." : itemTitle;
     const itemDescription = item.description;
     const description = itemDescription?.length > 100 ? itemDescription.slice(0, 90) + "..." : itemDescription;    
+    const time = timeElapsedSince(item.publishedAt);
     return (
         <div>
             <div className="bg-white flex flex-col h-[520px] md:w-[350px] lg:w-[320px] xl:w-[380px] font-plusSans border-gray-400 rounded-lg shadow-md">
@@ -21,7 +23,7 @@ const NewsCard = ({item}) => {
                     <p className="text-base text-gray-700">{description}</p>
                     <span className='text-sm text-gray-400'>{item.author}</span>
                     <div className="bottom flex justify-between mt-5 items-center">
-                        <span className="text-lg text-gray-700 pt-1">2 mins ago</span>
+                        <span className="text-lg text-gray-700 pt-1">{time}</span>
                         <button className="flex items-center gap-2 px-3 py-[6px] text-lg font-medium text-center text-black bg-purple-300 rounded-lg hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-300 "
                             onClick={() => {
                                 window.open(item.url, "_blank")
