@@ -5,7 +5,7 @@ import NewsCard from './NewsCard'
 import { useNewsContext } from '../contexts/NewsContext';
 import axios from 'axios';
 import { LineWave } from 'react-loader-spinner';
-import { Pagination } from '@mui/material';
+// import { Pagination } from '@mui/material';
 import { IoIosArrowForward } from "react-icons/io";
 
 
@@ -25,15 +25,21 @@ const News = () => {
     // it is for our main data
     const getTopHeadlines = async () => {
       setLoading(true);
-      const params = {
-        country: selectedCountry,
-        category: selectedCategory,
-        page,
-        apiKey: apiKey
-      };
+      // News Api is not available for free in production mode
+      // const params = {
+      //   country: selectedCountry,
+      //   category: selectedCategory,
+      //   page,
+      //   apiKey
+      // };
+      // const response = await axios.get(
+      //   'https://newsapi.org/v2/top-headlines',
+      //   { params }
+      // )
+
+      // Adding Gnews Api for free in production mode
       const response = await axios.get(
-        'https://newsapi.org/v2/top-headlines',
-        { params }
+        'https://gnews.io/api/v4/top-headlines?category=' + selectedCategory + '&lang=en&country=' + selectedCountry + '&max=9&apikey=' + apiKey,
       )
       setNews(response.data.articles);
       console.log(response.data.articles)
@@ -44,14 +50,20 @@ const News = () => {
     const searchForArticles = async () => {
       if (searchQuery) {
         setLoading(true);
-        const params = {
-          q: searchQuery,
-          pageSize: 20,
-          apiKey : apiKey
-        };
+        // News Api is not available for free in production mode
+        // const params = {
+        //   q: searchQuery,
+        //   pageSize: 20,
+        //   apiKey
+        // };
+        // const response = await axios.get(
+        //   'https://newsapi.org/v2/everything',
+        //   { params }
+        // );
+
+        // Adding Gnews Api for free in production mode
         const response = await axios.get(
-          'https://newsapi.org/v2/everything',
-          { params }
+          'https://gnews.io/api/v4/search?q=' + searchQuery + '&lang=en&country=' + selectedCountry + '&max=9&apikey=' + apiKey,
         );
         setSearchNews(response.data.articles)
         setLoading(false);
@@ -91,12 +103,10 @@ const News = () => {
     return item;
   })
 
-  console.log(searchQuery)
-  console.log(searchNews)
-  const handlePagination = (e, p) => {
-    console.log(e, p)
-    setPage(p)
-  }
+  // const handlePagination = (e, p) => {
+  //   console.log(e, p)
+  //   setPage(p)
+  // }
 
   return (
     <div>
@@ -191,7 +201,8 @@ const News = () => {
         }
 
         {/* pagination section */}
-        <div className='w-full flex items-center justify-center mt-8 px-4'>
+        {/* Pagination is only available in paid version of Gnews */}
+        {/* <div className='w-full flex items-center justify-center mt-8 px-4'>
           {
             loading ? (
               null
@@ -200,7 +211,7 @@ const News = () => {
 
             )
           }
-        </div>
+        </div> */}
       </div >
     </div >
   )
