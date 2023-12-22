@@ -29,7 +29,7 @@ const News = () => {
         country: selectedCountry,
         category: selectedCategory,
         page,
-        apiKey
+        apiKey: apiKey
       };
       const response = await axios.get(
         'https://newsapi.org/v2/top-headlines',
@@ -47,7 +47,7 @@ const News = () => {
         const params = {
           q: searchQuery,
           pageSize: 20,
-          apiKey
+          apiKey : apiKey
         };
         const response = await axios.get(
           'https://newsapi.org/v2/everything',
@@ -105,7 +105,7 @@ const News = () => {
           searchQuery.length > 0 ?
             (
               <div className='flex items-center ml-4 lg:ml-4 xl:ml-5 gap-2 lg:gap-'>
-                <span className='text-blue-500 flex items-center md:text-3xl'><span>Search results for</span><IoIosArrowForward className='text-2xl mt-2 ml-1'/></span>
+                <span className='text-blue-500 flex items-center md:text-3xl'><span>Search results for</span><IoIosArrowForward className='text-2xl mt-2 ml-1' /></span>
                 <span>{searchQuery}</span>
               </div>
             )
